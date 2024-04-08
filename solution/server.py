@@ -4,9 +4,10 @@ import json
 class Player:
     _instance = None
 
-    def __new__(cls, nombre, status):
+    def __new__(cls, id, nombre, number, status):
         if not cls._instance:
             cls._instance = super().__new__(cls)
+            cls._instance.id= id
             cls._instance.nombre = nombre
             cls._instance.number = number
             cls._instance.attempts = []
@@ -17,19 +18,43 @@ class Player:
         return {"nombre": self.nombre, "attemps": self.attemps "status": self.status}
         
 class PlayerServices:
-    games=[]
+    guess=[]
 
     def add_game(data):
+        id = guess.len()+1
+        nombre=data.nombre()
+        number=random.randint(1,100)
+        status="En progreso"
+        player=Player.__new__(id,nombre,number,status)
+        if guess==null:
+            guess.append(player)
+        else:
+            guess[1]=player
         
     def list_game():
+        return guess
 
-    def update_game(data):
+    def update_game(id, attemp):
+        for player in guess if player[id]==id:
+            player.attemps.append[attemp]
+            if attemp == player.number:
+                return "message: ¡Felicitaciones! Has adivinado el numero"
+            elif attemp >= player.number:
+                return "message: El numero a adivinar es menor"
+            elif attemp <= player.number:
+                return "message: El numero a adivinar es mayor"
 
     def delete_game(id):
+        for player in guess if player[id]==id:
+            guess.pop(id)
+        return player
 
     def filtrar_por_id(id):
+        for player in guess if player[id]==id:
+            return player
         
     def filtrar_por_nombre(nombre):
+        for player in guess if player[nombre]==nombre:
 
 class HTTPResponseHandler:
     @staticmethod
@@ -48,10 +73,11 @@ class HTTPResponseHandler:
 class PlayerHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         
-
     def do_POST(self):
-        
-
+    
+    def do_PUT(self):
+    
+    def do_DELETE(self):
 def main():
     global player
     player = Player("Julian")
